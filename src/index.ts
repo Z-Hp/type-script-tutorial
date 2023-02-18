@@ -1,18 +1,6 @@
+import { Invoice } from "./classes/invoice.js";
 
 
-class Invoice {
-    
-
-    constructor(
-        public client: string,
-        private detail: string,
-        readonly amount: number
-    ) {}
-
-    format() {
-        return `${this.client} recieve ${this.amount} for ${this.detail}`
-    }
-}
 
 let invoices : Invoice[] = [];
 
@@ -25,8 +13,8 @@ var amount = document.querySelector("#amount") as HTMLInputElement;
 form.addEventListener("submit", (event: Event) => {
     event.preventDefault();
     // console.log(`${type.value}: مبلغ ${amount.value} به ${tofrom.value} برای ${details.value} پرداخت شد`)
-    const invTwo = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
-    invoices.push(invTwo);
+    const inv = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+    invoices.push(inv);
     console.log(invoices);
     
 });
