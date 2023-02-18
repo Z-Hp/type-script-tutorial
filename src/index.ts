@@ -1,15 +1,13 @@
 
 
 class Invoice {
-    client: string;
-    detail: string;
-    amount: number;
+    
 
-    constructor(c: string, d: string, a: number) {
-        this.client = c;
-        this.detail = d;
-        this.amount = a;
-    }
+    constructor(
+        public client: string,
+        private detail: string,
+        readonly amount: number
+    ) {}
 
     format() {
         return `${this.client} recieve ${this.amount} for ${this.detail}`
@@ -33,10 +31,4 @@ form.addEventListener("submit", (event: Event) => {
     
 });
 
-// const invOne = new Invoice("roya", "teaching", 800);
-
-// console.log(invOne.format());
-
-
-// invoices.push(invOne);
 

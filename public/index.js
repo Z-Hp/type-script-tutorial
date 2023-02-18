@@ -1,9 +1,9 @@
 "use strict";
 var Invoice = /** @class */ (function () {
-    function Invoice(c, d, a) {
-        this.client = c;
-        this.detail = d;
-        this.amount = a;
+    function Invoice(client, detail, amount) {
+        this.client = client;
+        this.detail = detail;
+        this.amount = amount;
     }
     Invoice.prototype.format = function () {
         return "".concat(this.client, " recieve ").concat(this.amount, " for ").concat(this.detail);
@@ -23,6 +23,3 @@ form.addEventListener("submit", function (event) {
     invoices.push(invTwo);
     console.log(invoices);
 });
-// const invOne = new Invoice("roya", "teaching", 800);
-// console.log(invOne.format());
-// invoices.push(invOne);
