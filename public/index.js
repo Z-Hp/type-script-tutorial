@@ -1,5 +1,6 @@
 import { Invoice } from "./classes/invoice.js";
-let invoices = [];
+import { Payment } from "./classes/Payment.js";
+let docs = [];
 var form = document.querySelector("form");
 var type = document.querySelector("#type");
 var tofrom = document.querySelector("#tofrom");
@@ -7,8 +8,14 @@ var details = document.querySelector("#details");
 var amount = document.querySelector("#amount");
 form.addEventListener("submit", (event) => {
     event.preventDefault();
+    let doc;
     // console.log(`${type.value}: مبلغ ${amount.value} به ${tofrom.value} برای ${details.value} پرداخت شد`)
-    const inv = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
-    invoices.push(inv);
-    console.log(invoices);
+    if (type.value === "صورتحساب") {
+        doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+    }
+    else {
+        doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
+    }
+    docs.push(doc);
+    console.log(doc.format());
 });

@@ -1,8 +1,10 @@
 import { Invoice } from "./classes/invoice.js";
+import { Payment } from "./classes/Payment.js";
+import { HasFormatter } from "./interfaces/HasFormatter.js";
 
 
 
-let invoices : Invoice[] = [];
+let docs : HasFormatter[] = [];
 
 var form = document.querySelector("form")!;
 var type = document.querySelector("#type") as HTMLSelectElement;
@@ -12,10 +14,16 @@ var amount = document.querySelector("#amount") as HTMLInputElement;
 
 form.addEventListener("submit", (event: Event) => {
     event.preventDefault();
+    let doc: HasFormatter;
     // console.log(`${type.value}: مبلغ ${amount.value} به ${tofrom.value} برای ${details.value} پرداخت شد`)
-    const inv = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
-    invoices.push(inv);
-    console.log(invoices);
+    if (type.value === "صورتحساب") {
+        doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+    } else {
+        doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
+    }
+    
+    docs.push(doc);
+    console.log(doc.format());
     
 });
 
