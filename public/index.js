@@ -12,11 +12,13 @@ var list = new ListTemplate(ul);
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     let doc;
+    let values;
+    values = [tofrom.value, details.value, amount.valueAsNumber];
     if (type.value === "صورتحساب") {
-        doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+        doc = new Invoice(...values);
     }
     else {
-        doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
+        doc = new Payment(...values);
     }
     docs.push(doc);
     // console.log(doc.format());

@@ -14,15 +14,22 @@ var details = document.querySelector("#details") as HTMLInputElement;
 var amount = document.querySelector("#amount") as HTMLInputElement;
 
 var ul = document.querySelector("ul")!;
-var list = new ListTemplate(ul)
+var list = new ListTemplate(ul);
+
 
 form.addEventListener("submit", (event: Event) => {
     event.preventDefault();
+
     let doc: HasFormatter;
+
+    let values : [string, string, number];
+    values = [tofrom.value, details.value, amount.valueAsNumber]
+
+
     if (type.value === "صورتحساب") {
-        doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+        doc = new Invoice(...values);
     } else {
-        doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
+        doc = new Payment(...values);
     }
     
     docs.push(doc);
