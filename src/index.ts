@@ -1,4 +1,5 @@
 import { Invoice } from "./classes/invoice.js";
+import { ListTemplate } from "./classes/ListTemplate.js";
 import { Payment } from "./classes/Payment.js";
 import { HasFormatter } from "./interfaces/HasFormatter.js";
 
@@ -12,10 +13,12 @@ var tofrom = document.querySelector("#tofrom") as HTMLInputElement;
 var details = document.querySelector("#details") as HTMLInputElement;
 var amount = document.querySelector("#amount") as HTMLInputElement;
 
+var ul = document.querySelector("ul")!;
+var list = new ListTemplate(ul)
+
 form.addEventListener("submit", (event: Event) => {
     event.preventDefault();
     let doc: HasFormatter;
-    // console.log(`${type.value}: مبلغ ${amount.value} به ${tofrom.value} برای ${details.value} پرداخت شد`)
     if (type.value === "صورتحساب") {
         doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
     } else {
@@ -23,8 +26,8 @@ form.addEventListener("submit", (event: Event) => {
     }
     
     docs.push(doc);
-    console.log(doc.format());
-    
+    // console.log(doc.format());
+    list.render(doc, type.value, "end")
 });
 
 
